@@ -1,3 +1,3 @@
-# SaltySnacks
+# SurfLessons
 
 Fun little Oceananigans scripts
