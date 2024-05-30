@@ -1,3 +1,3 @@
-# SurfLessons
+# OceanFlavoredFluids
 
-Tutorials and scripts that teach ocean-flavored computational fluid dynamics with Oceananigans.
+Tutorials and scripts that teach ocean-flavored fluid dynamics with Oceananigans.
