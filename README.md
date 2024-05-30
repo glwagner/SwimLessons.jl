@@ -1,2 +1,3 @@
-# Delicaseas
+# SaltySnacks
+
 Fun little Oceananigans scripts
