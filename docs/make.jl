@@ -1,11 +1,11 @@
-pushfirst!(LOAD_PATH, joinpath(@__DIR__, "..")) # add Delicaseas to environment stack
+pushfirst!(LOAD_PATH, joinpath(@__DIR__, "..")) # add OceanFlavoredFluids to environment stack
 
 using
   Documenter,
   Literate,
   CairoMakie,  # so that Literate.jl does not capture precompilation output or warnings
   Glob,
-  Delicaseas
+  OceanFlavoredFluids
 
 ENV["DATADEPS_ALWAYS_ACCEPT"] = "true"
 
@@ -35,7 +35,7 @@ example_pages = [
 format = Documenter.HTML(
   collapselevel = 2,
      prettyurls = get(ENV, "CI", nothing) == "true",
-      canonical = "https://github.com/glwagner/Delicaseas/dev"
+      canonical = "https://github.com/glwagner/OceanFlavoredFluids/dev"
 )
 
 pages = [
@@ -51,8 +51,8 @@ pages = [
 ]
 
 makedocs(
-   sitename = "Delicaseas.jl",
-    modules = [Delicaseas],
+   sitename = "OceanFlavoredFluids.jl",
+    modules = [OceanFlavoredFluids],
      format = format,
       pages = pages,
     doctest = true,
@@ -67,7 +67,7 @@ for file in vcat(glob("docs/*.jld2"), glob("docs/*.nc"))
     rm(file)
 end
 
-deploydocs(repo = "github.com/CliMA/Delicaseas.jl.git",
+deploydocs(repo = "github.com/CliMA/OceanFlavoredFluids.jl.git",
            versions = ["stable" => "v^", "v#.#.#", "dev" => "dev"],
            forcepush = true,
            devbranch = "main",
