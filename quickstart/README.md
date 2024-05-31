@@ -60,7 +60,16 @@ then type
 
 ```julia
 using GLMakie
-heatmap(interior(model.velocities.u, :, :, 1))
+heatmap(interior(model.velocities.u, :, :, 1), axis=(; aspect=1), colormap=:balance)
+```
+
+For even more fun, try this:
+
+```juli
+u, v, w = model.velocities
+ω = Field(∂x(v) - ∂y(u))
+compute!(ω)
+heatmap(interior(ω, :, :, 1), axis=(; aspect=1), colormap=:balance)
 ```
 
 This should create a visualization of the turbulence you just simulated.
@@ -83,7 +92,8 @@ grid = RectilinearGrid(CPU(),
                        topology = (Periodic, Periodic, Flat))
 ```
 
-This builds a rectilinear grid (eg, a rectangle).
+This builds a rectilinear grid (eg, a rectangle), defining the physical domain and finite volume spatial discretization for our problem.
+
 Oceananigans also supports `LatitudeLongitudeGrid` for hydrostatic simulations in a spherical shell,
 and a few other grid types are in various stages of development.
 The first argument, which is not "named" (this is called a "positional" argument) is `CPU()`.
@@ -106,11 +116,48 @@ The argument `topology` dictates the nature of each dimension.
 The possibilities are `Periodic`, `Bounded`, and `Flat`.
 Here the z-dimension is `Flat` which means our grid is two-dimensional in `x, y`.
 
+For more information, type `?` in the REPL (to enter "help mode") and then `RectilinearGrid`.
+
 ```julia
 model = NonhydrostaticModel(; grid, advection=WENO())
 ```
 
-This builds a nonhydrostatic model.
-By default, `NonhydrostaticModel` has no tracers.
-We've also specified an advection scheme called `WENO`, which stands for "Weighted Essentially Non-Oscillatory."
+This builds a nonhydrostatic model, which defines the dynamical equations and numerical methods we'll use for our problem.
+`NonhydrostaticModel` also holds most of the memory we need.
+For example, `model.velocities.u` references the data correpsonding to the velocity component in the `x`-direction.
+
+Writing `function(; grid)` is the same as writing `function(grid=grid)`.
+(`NonhydrostaticModel` has one required keyword argument, and it's `grid`.)
+We've built the model with an `advection` scheme called `WENO`, which stands for "Weighted Essentially Non-Oscillatory."
+
+```julia
+ϵ(x, y) = 2rand() - 1
+set!(model, u=ϵ, v=ϵ)
+```
+
+This sets our initial condition.
+Basically, `set!` mutates the model state.
+`set!` can also be called on individual fields, like `set!(model.velocities.u, ϵ)`.
+Using `set!(model, ...)` ensures that the model state is self-consistent (for example, enforcing incompressibility, filling halo regions, etc).
+Model fields can be `set!` to numbers, functions, and arrays.
+The arguments of the function dependent on the dimensionality of the problem;
+we need a function `ui(x, y, z)` to `set!(model, u=ui)` on a three-dimensional `model`.
+
+```julia
+simulation = Simulation(model; Δt=0.01, stop_time=4)
+```
+
+This builds a `Simulation`, which is basically a simple utility for managing a time-stepping loop.
+The `Simulation` requires a time-step, `Δt`, and a stopping criterion
+(usually `stop_time` or `stop_iteration`, but other criteria, including custom criteria, can be defined).
+
+If you continue on the path of learning, you'll eventually know how to implement adaptive time-stepping, output, and arbitrary `Callback`s
+(functions executed on some schedule) with `Simulation`.
+
+```julia
+run!(simulation)
+```
+
+The bees knees and pretty self-explanatory.
+The best part of every script.
 
