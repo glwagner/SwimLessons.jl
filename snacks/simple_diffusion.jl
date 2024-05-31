@@ -17,8 +17,7 @@ z = znodes(model.tracers.c)
 lines(c, z, label="t = 0")
 
 # Build and run a simulation, taking care with the time step
-Δt = 0.1 * (10/grid.Nz)^2 
-simulation = Simulation(model; Δt, stop_time=1)
+simulation = Simulation(model; Δt=0.001, stop_time=1)
 run!(simulation)
 
 # Plot the final state
