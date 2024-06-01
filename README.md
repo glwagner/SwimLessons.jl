@@ -40,7 +40,8 @@ See also https://julialang.org/downloads/.
 ## Install Oceananigans
 
 ```julia
-julia> using Pkg; Pkg.add("Oceananigans")
+julia> using Pkg
+julia> Pkg.add("Oceananigans")
 ```
 
 Tip: another way is to press `]` (to enter package manager mode) and then type `pkg> add Oceananigans`.
