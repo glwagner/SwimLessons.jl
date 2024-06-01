@@ -16,7 +16,7 @@ Finally, an interface based on mathematical notation for defining diagnostic cal
 
 This repo is a work in progress. Here's the status of things as they stand now.
 
-- Below, a "quickstart" section is supposed to help users get up and swimming in the open ocean in an hour or two.
+- Below, a "quickstart" section is supposed to help users get up and swimming in an hour or two.
 - `fundamentals`: a series of tutorial notebooks introducing basic Oceananigans objects and functions: staggered grids, fields, operations/diagnostics, etc.
 - `snacks`: short, easily digested scripts that solve small problems.
 - `course`: a series of notebooks providing a university-style course on computational fluid dynamics and the Oceananigans user interface.
