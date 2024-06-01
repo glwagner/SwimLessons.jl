@@ -9,8 +9,8 @@ Oceananigans has an innovative user interface.
 In other modeling systems for fluid dynamics users typically write config files or namelists.
 But with Oceananigans, users write programs ("scripts") that implement their numerical experiments.
 This might sounds scary, but its actually easy --- using Oceananigans is like using a plotting library, or a library for data analysis.
-And Oceananigans' user interface is way more than just "easy to use": user scripts can be logical, interpretable, and pedagogical.
-It also enables creative science, because functions for forcing, boundary conditions, and background states injected directly into hot inner loops and arbitrary code can be executed between time-steps to update auxiliary model data or alter model behavior.
+And Oceananigans' user interface is way more than just "easy to use": with plain English names and an alignment between the the way we think about fluid dynamics and the organization of functionality, user scripts scripts can be literal, logical, interpretable and pedagogical.
+Finally, Oceananigans presents an interface based on mathematical notation for defining diagnostic calculations, forcing functions, boundary conditions, and background states that closes the gap between the written description of a fluid dynamics problem, and its implementation in an Oceananigans script.
 
 ## Contents of this repository
 
