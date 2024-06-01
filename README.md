@@ -65,6 +65,15 @@ In this tutorial we also make extensive use of one of Julia's most powerful plot
 
 ## A teaser example: two-dimensional turbulence
 
+Open your REPL.
+It should look something like this:
+
+<img width="647" alt="image" src="https://github.com/glwagner/OceanFlavoredFluids.jl/assets/15271942/f5b17f78-fe95-4661-b75a-89a1da1c536f">
+
+but maybe with a more recent version of Julia.
+
+Now, paste this whole script into your REPL.
+
 ```julia
 using Oceananigans
 
