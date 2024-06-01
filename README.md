@@ -9,14 +9,14 @@ Oceananigans has an innovative user interface.
 In other modeling systems for fluid dynamics users typically write config files or namelists.
 But with Oceananigans, users write programs ("scripts") that implement their numerical experiments.
 This might sounds scary, but its actually easy --- using Oceananigans is like using a plotting library, or a library for data analysis.
-And Oceananigans' user interface is way more than just "easy to use": user scripts can be logical, interpretable, and pedagogical.
-It also enables creative science, because functions for forcing, boundary conditions, and background states injected directly into hot inner loops and arbitrary code can be executed between time-steps to update auxiliary model data or alter model behavior.
+And Oceananigans' user interface is way more than just "easy to use": with plain English names and an alignment between core objects and the way we think about fluid dynamics, users can write scripts that are literal, logical, interpretable and pedagogical.
+Finally, an interface based on mathematical notation for defining diagnostic calculations, initial conditions, forcing functions, boundary conditions, and background states closes the gap between the written description of a fluid dynamics problem, and its implementation in an Oceananigans script.
 
 ## Contents of this repository
 
 This repo is a work in progress. Here's the status of things as they stand now.
 
-- Below, a "quickstart" section is supposed to help users get up and swimming in the open ocean in an hour or two.
+- Below, a "quickstart" section is supposed to help users get up and swimming in an hour or two.
 - `fundamentals`: a series of tutorial notebooks introducing basic Oceananigans objects and functions: staggered grids, fields, operations/diagnostics, etc.
 - `snacks`: short, easily digested scripts that solve small problems.
 - `course`: a series of notebooks providing a university-style course on computational fluid dynamics and the Oceananigans user interface.
@@ -37,10 +37,12 @@ curl -fsSL https://install.julialang.org | sh
 You will be prompted a few times and usually you can just accept the defaults.
 See also https://julialang.org/downloads/.
 
-## Install Oceananigans
+## Install Oceananigans and GLMakie
 
 ```julia
-julia> using Pkg; Pkg.add("Oceananigans")
+julia> using Pkg
+julia> Pkg.add("Oceananigans")
+julia> Pkg.add("GLMakie")
 ```
 
 Tip: another way is to press `]` (to enter package manager mode) and then type `pkg> add Oceananigans`.
@@ -59,7 +61,7 @@ But we don't need to worry about that yet.
 In this tutorial we also make extensive use of one of Julia's most powerful plotting libraries,
 [Makie](https://docs.makie.org/v0.21/).
 
-## A first example (it's supposed to impress you): two-dimensional turbulence
+## A teaser example: two-dimensional turbulence
 
 ```julia
 using Oceananigans
@@ -88,7 +90,7 @@ heatmap(interior(model.velocities.u, :, :, 1), axis=(; aspect=1), colormap=:bala
 
 For even more fun, try this:
 
-```juli
+```julia
 u, v, w = model.velocities
 ω = Field(∂x(v) - ∂y(u))
 compute!(ω)
@@ -184,4 +186,39 @@ run!(simulation)
 The bees knees and pretty self-explanatory.
 The best part of every script.
 
+```julia
+u, v, w = model.velocities
+```
+
+This "unpacks" the `NamedTuple` `model.velocities`. `u, v, w` are the velocity fields.
+Note that `w` is 0 here, but we still have a `w` field in `model.velocities`.
+
+```julia
+ω = Field(∂x(v) - ∂y(u))
+compute!(ω)
+```
+
+This builds a "computed field", which is linked to the operation `∂x(v) - ∂y(u)` ---
+the difference between the `x`-derivative of `v` and the `y`-derivative of `u`, otherwise known as "vertical vorticity".
+Note that in order to plot vorticity, we have to also build a `Field` (which allocates memory to store the result of the computation), and then we have to `compute!` the voricity.
+The allocation of memory and `compute!` steps are separated intentionally --- to compute diagnostics during a simulation, we want to allocate the memory want, but `compute!` many times.
+
+```julia
+heatmap(interior(ω, :, :, 1), axis=(; aspect=1), colormap=:balance)
+```
+
+This plots the `x, y` plane of the vorticity field at the first vertical level (and there's only one vertical level in this simulation).
+We also make sure the plot is square (like the domain) and that we're using a divergent colormap for vorticity which should be fairly equally distributed around zero.
+
+## What next?
+
+That's it for this first tutorial.
+Here's a few ideas to take it up a notch, many of which may require referring to the [Oceananigans documentation](https://clima.github.io/OceananigansDocumentation/stable/):
+
+- Try increasing the resolution of the model. Is the chosen time-step stable? Try adding adaptive time stepping to the simulation.
+- Try using a doubly bounded grid instead of a doubly-periodic grid.
+- Try computing and plotting the "speed", ie `s = sqrt(u^2 + v^2)`. Note the staggered grid location of `s`. Can you figure out how to put `s` at cell centers?
+- Try adding a passive tracer called `c` to the simulation. Compute the tracer variance, `c^2`.
+- Use output writers to output vorticity on a regular time-interval. Make an animation.
+- Use output writers to compute and save a time-series of the total, domain-averaged kinetic energy. Also compute the domain-averaged tracer variance.
 
