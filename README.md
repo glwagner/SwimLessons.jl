@@ -1,6 +1,6 @@
 # OceanFlavoredFluids
 
-Tutorials and scripts that teach ocean-flavored fluid dynamics with [Oceananigans](https://github.com/CliMA/Oceananigans.jl).
+This repository hosts tutorials and scripts that teach ocean-flavored fluid dynamics with [Oceananigans](https://github.com/CliMA/Oceananigans.jl).
 Oceananigans is Julia software for simulating the dynamics of incompressible fluids, with a focus on ocean applications.
 
 ## Why learn fluid dynamics with Oceananigans?
