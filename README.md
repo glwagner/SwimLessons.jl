@@ -59,7 +59,7 @@ But we don't need to worry about that yet.
 In this tutorial we also make extensive use of one of Julia's most powerful plotting libraries,
 [Makie](https://docs.makie.org/v0.21/).
 
-## A first example (it's supposed to impress you): two-dimensional turbulence
+## A teaser example: two-dimensional turbulence
 
 ```julia
 using Oceananigans
