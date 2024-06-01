@@ -37,11 +37,12 @@ curl -fsSL https://install.julialang.org | sh
 You will be prompted a few times and usually you can just accept the defaults.
 See also https://julialang.org/downloads/.
 
-## Install Oceananigans
+## Install Oceananigans and GLMakie
 
 ```julia
 julia> using Pkg
 julia> Pkg.add("Oceananigans")
+julia> Pkg.add("GLMakie")
 ```
 
 Tip: another way is to press `]` (to enter package manager mode) and then type `pkg> add Oceananigans`.
