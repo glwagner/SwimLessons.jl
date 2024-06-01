@@ -88,7 +88,7 @@ heatmap(interior(model.velocities.u, :, :, 1), axis=(; aspect=1), colormap=:bala
 
 For even more fun, try this:
 
-```juli
+```julia
 u, v, w = model.velocities
 ω = Field(∂x(v) - ∂y(u))
 compute!(ω)
