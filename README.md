@@ -11,3 +11,9 @@ This might sounds scary, but its actually easy --- using Oceananigans is like us
 The benefits of this paradigm are huge: user scripts and the science they do can be logical, concise, interpretable, and pedagogical.
 And creative science is possible, because functions for forcing, boundary conditions, and background states injected directly into hot inner loops and arbitrary code can be executed between time-steps to update auxiliary model data or alter model behavior.
 
+## Contents of this repository
+
+This repo is a work in progress. Here's the status of things as they stand now.
+
+- `quickstart`: 
+
