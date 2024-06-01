@@ -27,9 +27,9 @@ This repo is a work in progress. Here's the status of things as they stand now.
 
 This is a 1-2 hour tutorial intended to get people swimming on day 1, assuming no prior Julia or Oceananigans experience.
 
-## Install Julia
+## Install Julia on your laptop or personal computer
 
-Copy into a terminal:
+Open up a terminal on your laptop or personal computer and copy/paste this into it:
 
 
 ```bash
@@ -38,6 +38,10 @@ curl -fsSL https://install.julialang.org | sh
 
 You will be prompted a few times and usually you can just accept the defaults.
 See also https://julialang.org/downloads/.
+
+Sometimes people are tempted to start working on a cluster or HPC system they have access too.
+We _definitely_ suggest starting on your laptop, because developing Oceananigans scripts on your laptop is a crucial part of the
+"Oceananigans flow".
 
 ## Install Oceananigans and GLMakie
 
@@ -65,13 +69,18 @@ In this tutorial we also make extensive use of one of Julia's most powerful plot
 
 ## A teaser example: two-dimensional turbulence
 
-Open your REPL.
+Open a terminal and type
+
+```bash
+$ julia
+```
+
+This opens the julia REPL.
 It should look something like this:
 
-<img width="647" alt="image" src="https://github.com/glwagner/OceanFlavoredFluids.jl/assets/15271942/f5b17f78-fe95-4661-b75a-89a1da1c536f">
+<img width="640" alt="image" src="https://github.com/glwagner/OceanFlavoredFluids.jl/assets/15271942/1fea8c11-7a24-4b18-ac3c-e529b3174312">
 
-but maybe with a more recent version of Julia.
-
+but maybe with a more recent version of Julia 👀
 Now, paste this whole script into your REPL.
 
 ```julia
@@ -92,7 +101,13 @@ simulation = Simulation(model; Δt=0.01, stop_time=4)
 run!(simulation)
 ```
 
-then type
+At first this should look something like
+
+<img width="706" alt="image" src="https://github.com/glwagner/OceanFlavoredFluids.jl/assets/15271942/ea9eed53-3b41-49f9-be2f-faac32c5adc2">
+
+but quickly more exciting things start to happen.
+Eventually, you'll have run your first Julia simulation (maybe).
+Now type
 
 ```julia
 using GLMakie
