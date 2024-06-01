@@ -25,7 +25,7 @@ This repo is a work in progress. Here's the status of things as they stand now.
 
 This is a 1-2 hour tutorial intended to get people swimming on day 1, assuming no prior Julia or Oceananigans experience.
 
-# Install Julia
+## Install Julia
 
 Copy into a terminal:
 
@@ -37,7 +37,7 @@ curl -fsSL https://install.julialang.org | sh
 You will be prompted a few times and usually you can just accept the defaults.
 See also https://julialang.org/downloads/.
 
-# Install Oceananigans
+## Install Oceananigans
 
 ```julia
 julia> using Pkg; Pkg.add("Oceananigans")
@@ -59,7 +59,7 @@ But we don't need to worry about that yet.
 In this tutorial we also make extensive use of one of Julia's most powerful plotting libraries,
 [Makie](https://docs.makie.org/v0.21/).
 
-# A first example (it's supposed to impress you): two-dimensional turbulence
+## A first example (it's supposed to impress you): two-dimensional turbulence
 
 ```julia
 using Oceananigans
@@ -97,7 +97,7 @@ heatmap(interior(ω, :, :, 1), axis=(; aspect=1), colormap=:balance)
 
 This should create a visualization of the turbulence you just simulated.
 
-# Again with more explanation
+### Again with more explanation
 
 ```julia
 using Oceananigans
