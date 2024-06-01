@@ -107,7 +107,7 @@ At first this should look something like
 
 but quickly more exciting things start to happen.
 Eventually, you'll have run your first Julia simulation (maybe).
-Now type
+To see what happened inside that simulation, try typing
 
 ```julia
 using GLMakie
