@@ -123,9 +123,21 @@ compute!(ω)
 heatmap(interior(ω, :, :, 1), axis=(; aspect=1), colormap=:balance)
 ```
 
-This should create a visualization of the turbulence you just simulated.
+A window should pop up that looks something like this:
+
+<img width="465" alt="image" src="https://github.com/glwagner/OceanFlavoredFluids.jl/assets/15271942/d5d5abbb-1ffb-4c5e-86b3-f0badcac8e01">
+
+This is showing the _vorticity_ of the turbulence you just simulated.
+Yes, it's coarse, but that's why it runs quick.
+You can always bump the resolution if you want -- here's what we get for `size = (512, 512)`:
+
+<img width="480" alt="image" src="https://github.com/glwagner/OceanFlavoredFluids.jl/assets/15271942/4f02de7a-c72d-4775-9381-1601c5ae16a0">
+
 
 ### Again with more explanation
+
+But enough tinkering.
+Let's talk about what each line in this first starter script does.
 
 ```julia
 using Oceananigans
