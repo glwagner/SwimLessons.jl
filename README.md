@@ -1,4 +1,4 @@
-# LearnOcean
+# OceanLearning
 
 This repository hosts tutorials and scripts that teach [Oceananigans](https://github.com/CliMA/Oceananigans.jl), ocean modeling with Oceananigans, and ocean-flavored fluid dynamics with Oceananigans.
 Oceananigans is Julia software for simulating the dynamics of incompressible fluids, with a focus on ocean applications.
