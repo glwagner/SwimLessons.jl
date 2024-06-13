@@ -1,4 +1,4 @@
-module OceanFlavoredFluids
+module OceanLearning
 
 greet() = print("Hello World!")
 
