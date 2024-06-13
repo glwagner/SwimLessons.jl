@@ -1,4 +1,4 @@
-module OceanLearning
+module SwimLessons
 
 greet() = print("Hello World!")
 
