@@ -26,6 +26,7 @@ To download data, write
 ```julia
 using ClimaOcean
 using Oceananigans
+using Oceananigans.Units
 λ★, φ★ = 35.1, 50.1
 grid = RectilinearGrid(size=200, x=λ★, y=φ★, z=(-400, 0), topology=(Flat, Flat, Bounded))
 ocean = ocean_simulation(grid; Δt=10minutes, coriolis=FPlane(latitude = φ★))
