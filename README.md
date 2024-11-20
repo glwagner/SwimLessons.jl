@@ -111,7 +111,7 @@ To see what happened inside that simulation, try typing
 
 ```julia
 using GLMakie
-heatmap(interior(model.velocities.u, :, :, 1), axis=(; aspect=1), colormap=:balance)
+heatmap(model.velocities.u, axis=(; aspect=1), colormap=:balance)
 ```
 
 For even more fun, try this:
@@ -120,7 +120,7 @@ For even more fun, try this:
 u, v, w = model.velocities
 ω = Field(∂x(v) - ∂y(u))
 compute!(ω)
-heatmap(interior(ω, :, :, 1), axis=(; aspect=1), colormap=:balance)
+heatmap(ω, axis=(; aspect=1), colormap=:balance)
 ```
 
 A window should pop up that looks something like this:
@@ -242,7 +242,7 @@ Note that in order to plot vorticity, we have to also build a `Field` (which all
 The allocation of memory and `compute!` steps are separated intentionally --- to compute diagnostics during a simulation, we want to allocate the memory want, but `compute!` many times.
 
 ```julia
-heatmap(interior(ω, :, :, 1), axis=(; aspect=1), colormap=:balance)
+heatmap(ω, axis=(; aspect=1), colormap=:balance)
 ```
 
 This plots the `x, y` plane of the vorticity field at the first vertical level (and there's only one vertical level in this simulation).
