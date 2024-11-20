@@ -65,6 +65,10 @@ compute!(ω)
 heatmap(ω, axis=(; aspect=1), colormap=:balance)
 ```
 
+This should create a figure that looks like
+
+<img width="464" alt="image" src="https://github.com/user-attachments/assets/bab25d97-2ffe-419f-9e2f-4100fd347670">
+
 ## That escalated quickly: large eddy simulation
 
 ```julia
