@@ -95,20 +95,24 @@ run!(simulation)
 
 u, v, w = model.velocities
 heatmap(view(w, :, :, grid.Nz), axis=(; aspect=1), colormap=:balance)
+display(current_figure())
 ```
 
-## Maybe slow down: single column model forced by a prescribed atmosphere
+## Single column model forced by a prescribed atmosphere
+
+Our next example runs a single column simulation forced by JRA55 reanalysis at (35.1 W, 50.1 N) (a place in the North Pacific called "Ocean Station Papa", where we have long-term observations).
 
 ```julia
 using ClimaOcean
 using Oceananigans
+using Oceananigans.Units
 
 λ★, φ★ = 35.1, 50.1
 grid = RectilinearGrid(size = 200,
                        x = λ★, y = φ★, z = (-400, 0),
                        topology = (Flat, Flat, Bounded))
 
-ocean = ocean_simulation(grid; Δt=10minutes, coriolis=FPlane(latitude = φ★))
+ocean = ocean_simulation(grid; coriolis=FPlane(latitude = φ★))
 
 set!(ocean.model, T=ECCOMetadata(:temperature), S=ECCOMetadata(:salinity))
 
@@ -121,7 +125,7 @@ atmosphere = JRA55_prescribed_atmosphere(1:JRA55_snapshots,
 
 radiation = Radiation()
 coupled_model = OceanSeaIceModel(ocean; atmosphere, radiation)
-simulation = Simulation(coupled_model, Δt=ocean.Δt, stop_time=simulation_days*days)
+simulation = Simulation(coupled_model, Δt=10minutes, stop_time=simulation_days*days)
 run!(simulation)
 ```
 
