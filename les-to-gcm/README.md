@@ -9,7 +9,7 @@ Open up a terminal, navigate to a directory of your choice, and clone this repo:
 
 ```bash
 git clone https://github.com/glwagner/SwimLessons.jl.git
-cd SwimLessons/les-to-gcm
+cd SwimLessons.jl/les-to-gcm
 ```
 
 Now type `julia --project` and instantiate this environment
